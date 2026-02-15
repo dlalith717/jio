@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Medi.AI | Clinical Risk Stratification</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    background: #f4f6f9;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background: #111827;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.logo span {
+    color: #10b981;
+}
+
+.nav-item {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-item:hover {
+    background: #1f2937;
+}
+
+.nav-item.active {
+    background: #2563eb;
+}
+
+.logout {
+    margin-top: auto;
+    opacity: 0.6;
+}
+
+/* Main Content */
+.main {
+    flex: 1;
+    padding: 40px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    max-width: 700px;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: gray;
+    margin-bottom: 30px;
+}
+
+.patient {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: #fee2e2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    font-weight: bold;
+}
+
+.risk {
+    font-size: 32px;
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.status {
+    margin-top: 10px;
+    color: #10b981;
+    font-weight: 500;
+}
+
+button {
+    margin-top: 25px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: black;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.hidden {
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="logo">Medi.<span>AI</span></div>
+    <div class="nav-item" onclick="showDashboard()">Dashboard</div>
+    <div class="nav-item active" onclick="showQueue()">Active Queue</div>
+    <div class="nav-item" onclick="showSettings()">Engine Settings</div>
+    <div class="logout">Log Out</div>
+</div>
+
+<div class="main">
+
+    <!-- TRIAGE PAGE -->
+    <div id="queuePage" class="card">
+        <div class="title">Triage Queue</div>
+        <div class="subtitle">Real-time risk classification for incoming patients.</div>
+
+        <div class="patient">
+            <div class="avatar">P</div>
+            <div>
+                <div><strong>#4491-X</strong></div>
+                <div style="color: gray;">Chest Pain | History: Hypertension</div>
+            </div>
+        </div>
+
+        <div>AI Risk Level</div>
+        <div class="risk">94.2%</div>
+        <div class="status">Stable (0.4ms latency)</div>
+
+        <button onclick="goToActiveQueue()">REVIEW</button>
+    </div>
+
+    <!-- ACTIVE QUEUE PAGE -->
+    <div id="activePage" class="card hidden">
+        <div class="title">Active Queue</div>
+        <div class="subtitle">Currently reviewed patients</div>
+
+        <p><strong>Patient ID:</strong> #4491-X</p>
+        <p><strong>Condition:</strong> Chest Pain</p>
+        <p><strong>Risk Level:</strong> 94.2%</p>
+
+        <button onclick="showQueue()">Back to Queue</button>
+    </div>
+
+</div>
+
+<script>
+function goToActiveQueue() {
+    document.getElementById("queuePage").classList.add("hidden");
+    document.getElementById("activePage").classList.remove("hidden");
+}
+
+function showQueue() {
+    document.getElementById("queuePage").classList.remove("hidden");
+    document.getElementById("activePage").classList.add("hidden");
+}
+
+function showDashboard() {
+    alert("Dashboard page coming soon");
+}
+
+function showSettings() {
+    alert("Engine Settings page coming soon");
+}
+</script>
+
+</body>
+</html>
